@@ -66,7 +66,7 @@
           = raw @build.report_html(true)
       - if @build.complete?
         .tab-pane.active#coverage_tab
-          %iframe#coverage_frame{frameborder: 0, style:"height:800px;width:100%;", src: "#{ENV['REPORTS_URL']}project-#{@project.id}/coverage/#{@build.sha}"}
+          %iframe#coverage_frame{frameborder: 0, style:"height:800px;width:100%;", src: "#{ENV['REPORTS_URL']}project-#{@project.id}/coverage/#{@build.sha}/#{@build.id}"}
 
   .col-md-3
     .build-widget

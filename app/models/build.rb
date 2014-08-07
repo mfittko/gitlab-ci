@@ -25,7 +25,7 @@ class Build < ActiveRecord::Base
   serialize :push_data
 
   attr_accessible :project_id, :ref, :sha, :before_sha,
-    :status, :finished_at, :trace, :started_at, :push_data, :runner_id, :project_name
+    :status, :finished_at, :trace, :started_at, :push_data, :runner_id, :project_name, :id
 
   validates :before_sha, presence: true
   validates :sha, presence: true
@@ -142,7 +142,7 @@ class Build < ActiveRecord::Base
 
   def report_html(initial=false)
     html = ''
-    html_src = HTTParty.get("#{ENV['REPORTS_URL']}project-#{project_id}/rspec/#{sha}")
+    html_src = HTTParty.get("#{ENV['REPORTS_URL']}project-#{project_id}/rspec/#{sha}/#{id}")
     parsed_html = Nokogiri::HTML(html_src)
     parsed_html.xpath("//script").remove
     if initial
