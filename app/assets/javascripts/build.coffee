@@ -77,10 +77,14 @@ class Build
         $("html,body").scrollTop $("#build-trace").height()
 
   styleResults: ->
+    $('#build-report .results .example.failed').closest(".example_group").setClass("example_group failed")
     $('#build-report .results .example_group').addClass("bs-example")
+    $('#build-report .results .example_group').addClass("bs-callout")
     $('#build-report .results .example').addClass("bs-callout")
     $('#build-report .results .example.passed').addClass("bs-callout-success")
     $('#build-report .results .example.failed').addClass("bs-callout-danger")
+    $('#build-report .results .example_group.passed').addClass("bs-callout-success")
+    $('#build-report .results .example_group.failed').addClass("bs-callout-danger")
     if "enabled" is $("#fails-button").data("state")
       $('#build-report .example.passed').hide()
       $('#build-report .example.pending').hide()
