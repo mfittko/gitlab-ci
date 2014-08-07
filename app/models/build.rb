@@ -140,6 +140,11 @@ class Build < ActiveRecord::Base
     html ||= ''
   end
 
+  def report_html
+    html = "#{HTTParty.get(ENV['REPORTS_URL'])}project-#{@project.id}/coverage/#{@build.sha}"
+    html ||= ''
+  end
+
   def started?
     !pending? && !canceled? && started_at
   end

@@ -55,7 +55,8 @@
             = preserve do
               = raw @build.trace_html
       .tab-pane.active#reports_tab
-        %iframe#reports_frame{frameborder: 0, style:"height:800px;width:100%;", src: "#{ENV['REPORTS_URL']}project-#{@project.id}/rspec/#{@build.sha}"}
+        #build-report
+          = raw @build.report_html
       - if @build.complete?
         .tab-pane.active#coverage_tab
           %iframe#coverage_frame{frameborder: 0, style:"height:800px;width:100%;", src: "#{ENV['REPORTS_URL']}project-#{@project.id}/coverage/#{@build.sha}"}

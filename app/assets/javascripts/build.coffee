@@ -30,6 +30,7 @@ class Build
               if build.status == "running"
                 $('#build-trace code').html build.trace_html
                 $('#build-trace code').append '<i class="icon-refresh icon-spin"/>'
+                $('#build-report').html build.report_html
                 @checkAutoscroll()
               else
                 Turbolinks.visit build_url
@@ -38,7 +39,7 @@ class Build
   checkAutoscroll: ->
     if "enabled" is $("#autoscroll-button").data("state")
       if $("#reports_tab").hasClass("active")
-        $("#reports_frame").prop("src",$("#reports_frame").prop("src"))
+        $("html,body").scrollTop $("#build-report").height()
       else if $("#trace_tab").hasClass("active")
         $("html,body").scrollTop $("#build-trace").height()
 
