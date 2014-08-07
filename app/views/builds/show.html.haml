@@ -60,7 +60,7 @@
             = preserve do
               = raw @build.trace_html
       .tab-pane.active#reports_tab
-        #build-report
+        #build-report{style:"margin-top: 10px;"}
           = raw @build.report_html(true)
       - if @build.complete?
         .tab-pane.active#coverage_tab
