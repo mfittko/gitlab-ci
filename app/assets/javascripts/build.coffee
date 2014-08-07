@@ -31,22 +31,6 @@ class Build
           $(this).text "disable autoupdate"
 
       #
-      # Bind fails only button to show only failed examples
-      #
-      $("#fails-button").bind "click", ->
-        state = $(this).data("state")
-        if "enabled" is state
-          $(this).data "state", "disabled"
-          $(this).text "all examples"
-          $('#build-report .example.passed').hide()
-          $('#build-report .example.pending').hide()
-        else
-          $(this).data "state", "enabled"
-          $(this).text "fails only"
-          $('#build-report .example.passed').show()
-          $('#build-report .example.pending').show()
-
-      #
       # Check for new build output if user still watching build page
       # Only valid for runnig build when output changes during time
       #
@@ -66,6 +50,22 @@ class Build
               else
                 Turbolinks.visit build_url
       , 4000
+
+    #
+    # Bind fails only button to show only failed examples
+    #
+    $("#fails-button").bind "click", ->
+      state = $(this).data("state")
+      if "enabled" is state
+        $(this).data "state", "disabled"
+        $(this).text "all examples"
+        $('#build-report .example.passed').hide()
+        $('#build-report .example.pending').hide()
+      else
+        $(this).data "state", "enabled"
+        $(this).text "fails only"
+        $('#build-report .example.passed').show()
+        $('#build-report .example.pending').show()
 
   checkAutoscroll: ->
     if "enabled" is $("#autoscroll-button").data("state")
