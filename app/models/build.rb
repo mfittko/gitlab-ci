@@ -140,12 +140,16 @@ class Build < ActiveRecord::Base
     html ||= ''
   end
 
-  def report_html
+  def report_html(initial=false)
     html = ''
     html_src = HTTParty.get("#{ENV['REPORTS_URL']}project-#{project_id}/rspec/#{sha}")
     parsed_html = Nokogiri::HTML(html_src)
     parsed_html.xpath("//script").remove
-    html += parsed_html.css('body > .rspec-report .results > .example_group').to_html
+    if initial
+      html += parsed_html.css('body > .rspec-report .results').to_html
+    else
+      html += parsed_html.css('body > .rspec-report .results > .example_group').to_html
+    end
     html
   end
 
