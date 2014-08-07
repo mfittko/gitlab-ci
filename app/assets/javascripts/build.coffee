@@ -49,8 +49,8 @@ class Build
   styleResults: ->
     $('#build-report .results .example_group').addClass("bs-example")
     $('#build-report .results .example').addClass("bs-callout")
-    $('#build-report .results .example passed').addClass("bs-callout-success")
-    $('#build-report .results .example failed').addClass("bs-callout-warning")
+    $('#build-report .results .example.passed').addClass("bs-callout-success")
+    $('#build-report .results .example.failed').addClass("bs-callout-warning")
 
 
 @Build = Build
