@@ -38,9 +38,13 @@ class Build
         if "enabled" is state
           $(this).data "state", "disabled"
           $(this).text "fails only"
+          $('#build-report .example.passed').show()
+          $('#build-report .example.pending').show()
         else
           $(this).data "state", "enabled"
           $(this).text "all examples"
+          $('#build-report .example.passed').hide()
+          $('#build-report .example.pending').hide()
 
       #
       # Check for new build output if user still watching build page
@@ -75,13 +79,6 @@ class Build
     $('#build-report .results .example').addClass("bs-callout")
     $('#build-report .results .example.passed').addClass("bs-callout-success")
     $('#build-report .results .example.failed').addClass("bs-callout-danger")
-    if "enabled" is $("#fails-button").data("state")
-      $('#build-report .example.passed').hide()
-      $('#build-report .example.pending').hide()
-    else
-      $('#build-report .example.passed').show()
-      $('#build-report .example.pending').show()
-
 
 
 @Build = Build
