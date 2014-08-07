@@ -1,5 +1,6 @@
 class Build
   @interval: null
+  @styleResults()
 
   constructor: (build_url, build_status) ->
     clearInterval(Build.interval)
@@ -32,9 +33,7 @@ class Build
                 $('#build-trace code').append '<i class="icon-refresh icon-spin"/>'
                 $('#build-report .results').html build.report_html
                 $('#build-report .results').append '<i class="icon-refresh icon-spin"/>'
-                $('#build-report .results .example_group').addClass("bs-callout")
-                $('#build-report .results .example_group passed').addClass("bs-callout-success")
-                $('#build-report .results .example_group failed').addClass("bs-callout-warning")
+                @styleResults()
                 @checkAutoscroll()
               else
                 Turbolinks.visit build_url
@@ -46,6 +45,12 @@ class Build
         $("html,body").scrollTop $("#build-report").height()
       else if $("#trace_tab").hasClass("active")
         $("html,body").scrollTop $("#build-trace").height()
+
+  styleResults: ->
+    $('#build-report .results .example_group').addClass("bs-example")
+    $('#build-report .results .example').addClass("bs-callout")
+    $('#build-report .results .example passed').addClass("bs-callout-success")
+    $('#build-report .results .example failed').addClass("bs-callout-warning")
 
 
 @Build = Build
