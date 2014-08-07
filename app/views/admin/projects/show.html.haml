@@ -1,11 +1,12 @@
 .row-fluid
-  %h4.page-title
-    Project: #{@project.name}
+  .col-md-12
+    %h4.page-title
+      Project: #{@project.name}
 
-  %p
-    = link_to admin_projects_path do
-      &larr; Back to projects list
-  %hr
+    %p
+      = link_to admin_projects_path do
+        &larr; Back to projects list
+    %hr
 .row-fluid
   .col-md-6
     %fieldset

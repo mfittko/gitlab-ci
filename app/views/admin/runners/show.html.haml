@@ -1,21 +1,22 @@
 .row-fluid
-  %h4.page-title
-    Runner: #{@runner.token}
+  .col-md-12
+    %h4.page-title
+      Runner: #{@runner.token}
 
-  %p.light= @runner.description
-  %p
-    = link_to admin_runners_path do
-      &larr; Back to runners list
-  %hr
+    %p.light= @runner.description
+    %p
+      = link_to admin_runners_path do
+        &larr; Back to runners list
+    %hr
 
-  - if @runner.shared?
-    .bs-callout.bs-callout-success
-      %h4 This runner will process build from ALL projects
-      %p If you want runner to build only specific projects you just need to enable them in table below
-  - else
-    .bs-callout.bs-callout-info
-      %h4 This runner will process build only from ASSIGNED projects
-      %p If you want runner to build all projects you just need to disable all assignee projects
+    - if @runner.shared?
+      .bs-callout.bs-callout-success
+        %h4 This runner will process build from ALL projects
+        %p If you want runner to build only specific projects you just need to enable them in table below
+    - else
+      .bs-callout.bs-callout-info
+        %h4 This runner will process build only from ASSIGNED projects
+        %p If you want runner to build all projects you just need to disable all assignee projects
 .row-fluid
   .col-md-6
     %h4 Restrict projects for this runner
