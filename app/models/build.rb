@@ -141,7 +141,7 @@ class Build < ActiveRecord::Base
   end
 
   def report_html
-    html = "#{HTTParty.get(ENV['REPORTS_URL'])}project-#{project_id}/coverage/#{sha}"
+    html = HTTParty.get("#{ENV['REPORTS_URL']}project-#{project_id}/rspec/#{sha}")
     html ||= ''
   end
 
