@@ -6,8 +6,9 @@
     = render 'layouts/info'
     - if content_for?(:title)
       .container-fluid.container-title
-        = yield(:title)
-      %hr
+        .col-md-12
+          = yield(:title)
+          %hr
 
     .container-fluid.container-body
       = yield
