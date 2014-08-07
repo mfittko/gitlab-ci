@@ -59,10 +59,10 @@
               = raw @build.trace_html
       .tab-pane.active#reports_tab
         .clearfix
-          .build-button-container.pull-right
-            %button.btn.btn-danger.btn-sm#fails-button{:type => "button", :data => {:state => 'disabled'}} fails only
+          .build-button-container.pull-right{style:"margin-top: 10px;"}
+            %button.btn.btn-default.btn-sm#fails-button{:type => "button", :data => {:state => 'disabled'}} fails only
           .clearfix
-        #build-report{style:"margin-top: 10px;"}
+        #build-report
           = raw @build.report_html(true)
       - if @build.complete?
         .tab-pane.active#coverage_tab

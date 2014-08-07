@@ -76,8 +76,11 @@ class Build
     $('#build-report .results .example.passed').addClass("bs-callout-success")
     $('#build-report .results .example.failed').addClass("bs-callout-danger")
     if "enabled" is $("#fails-button").data("state")
-      $('#build-report .passed').remove()
-      $('#build-report .pending').remove()
+      $('#build-report .example.passed').hide()
+      $('#build-report .example.pending').hide()
+    else
+      $('#build-report .example.passed').show()
+      $('#build-report .example.pending').show()
 
 
 
