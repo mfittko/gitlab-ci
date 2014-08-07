@@ -76,10 +76,10 @@ class Build
 
   styleResults: ->
     $('#build-report .results .example.failed').parents(".example_group").attr("class","example_group failed")
-    $('.example_group, .example', '#build-report .results').addClass("bs-example")
+    $('.example_group, .example', '#build-report .results').addClass("bs-callout")
     $('#build-report .results .example_group').addClass("bs-callout")
-    $('#build-report .results .example_group.passed').addClass("bs-callout-success")
-    $('#build-report .results .example_group.failed').addClass("bs-callout-danger")
+    $('.example_group.passed, .example.passed', '#build-report .results').addClass("bs-callout-success")
+    $('.example_group.failed, .example.failed', '#build-report .results').addClass("bs-callout-danger")
     if "enabled" is $("#fails-button").data("state")
       $('#build-report .example_group.passed').hide()
       $('#build-report .example_group.pending').hide()
