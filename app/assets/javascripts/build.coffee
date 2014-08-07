@@ -1,6 +1,8 @@
 class Build
   @interval: null
-  @styleResults()
+
+  constructor: ->
+    @styleResults()
 
   constructor: (build_url, build_status) ->
     clearInterval(Build.interval)
