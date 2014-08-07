@@ -31,6 +31,7 @@ class Build
                 $('#build-trace code').html build.trace_html
                 $('#build-trace code').append '<i class="icon-refresh icon-spin"/>'
                 $('#build-report').html build.report_html
+                $('#build-report').append '<i class="icon-refresh icon-spin"/>'
                 @checkAutoscroll()
               else
                 Turbolinks.visit build_url
