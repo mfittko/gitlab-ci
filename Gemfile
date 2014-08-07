@@ -68,6 +68,7 @@ gem "font-awesome-rails", '~> 3.2'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'nprogress-rails'
+gem 'nokogiri'
 
 
 group :development do
