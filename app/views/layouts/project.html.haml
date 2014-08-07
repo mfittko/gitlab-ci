@@ -6,17 +6,18 @@
     = render 'layouts/info'
     .container-fluid
       .row-fluid
-        %h3.project-title
-          = @project.name
-          - if @project.public
-            %small
-              %i.icon-globe
-              Public
+        .col-md-12
+          %h3.project-title
+            = @project.name
+            - if @project.public
+              %small
+                %i.icon-globe
+                Public
 
-          - if @project.gitlab_url.present?
-            .pull-right
-              = link_to 'View on GitLab', @project.gitlab_url, class: 'btn btn-small'
-    %hr
+            - if @project.gitlab_url.present?
+              .pull-right
+                = link_to 'View on GitLab', @project.gitlab_url, class: 'btn btn-small'
+          %hr
     .container-fluid
       .row-fluid
         - if current_user
