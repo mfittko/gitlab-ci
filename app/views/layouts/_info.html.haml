@@ -1,9 +1,10 @@
-.container
-  - if alert || notice
-    - if alert
-      .alert= alert
-    - if notice
-      .alert.alert-info= notice
+.container-fluid
+  .row-fluid
+    - if alert || notice
+      - if alert
+        .alert= alert
+      - if notice
+        .alert.alert-info= notice
 
-  - if current_user && current_user.is_admin && Runner.count.zero?
-    = render 'shared/no_runners'
+    - if current_user && current_user.is_admin && Runner.count.zero?
+      = render 'shared/no_runners'

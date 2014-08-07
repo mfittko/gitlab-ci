@@ -4,20 +4,21 @@
   %body{ :'data-page' => body_data_page }
     = render 'layouts/nav'
     = render 'layouts/info'
-    .container
-      %h3.project-title
-        = @project.name
-        - if @project.public
-          %small
-            %i.icon-globe
-            Public
+    .container-fluid
+      .row-fluid
+        %h3.project-title
+          = @project.name
+          - if @project.public
+            %small
+              %i.icon-globe
+              Public
 
-        - if @project.gitlab_url.present?
-          .pull-right
-            = link_to 'View on GitLab', @project.gitlab_url, class: 'btn btn-small'
+          - if @project.gitlab_url.present?
+            .pull-right
+              = link_to 'View on GitLab', @project.gitlab_url, class: 'btn btn-small'
     %hr
-    .container
-      .row
+    .container-fluid
+      .row-fluid
         - if current_user
           .col-md-2.append-bottom-20
             %ul.nav.nav-pills.nav-stacked.project-menu
