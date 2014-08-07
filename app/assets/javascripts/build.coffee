@@ -37,15 +37,14 @@ class Build
         state = $(this).data("state")
         if "enabled" is state
           $(this).data "state", "disabled"
-          $(this).text "f
-          $('#build-report .example.passed').show()
-          $('#build-report .example.pending').show()ails only"
-        else
-          $(this).data "state", "enabled"
-          $(this).text "all
+          $(this).text "all examples"
           $('#build-report .example.passed').hide()
           $('#build-report .example.pending').hide()
-examples"
+        else
+          $(this).data "state", "enabled"
+          $(this).text "fails only"
+          $('#build-report .example.passed').show()
+          $('#build-report .example.pending').show()
 
       #
       # Check for new build output if user still watching build page
