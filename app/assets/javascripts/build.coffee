@@ -1,10 +1,8 @@
 class Build
   @interval: null
 
-  constructor: ->
-    @styleResults()
-
   constructor: (build_url, build_status) ->
+    @styleResults()
     clearInterval(Build.interval)
 
     if build_status == "running" || build_status == "pending"
