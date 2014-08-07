@@ -39,10 +39,8 @@
   .col-md-9
     .clearfix
       - if @build.active?
-        .autoscroll-container.pull-right
+        .build-button-container.pull-right
           %button.btn.btn-default.btn-sm#autoscroll-button{:type => "button", :data => {:state => 'disabled'}} enable autoscroll
-        %span &nbsp;
-        .autoupdate-container.pull-right
           %button.btn.btn-default.btn-sm#autoupdate-button{:type => "button", :data => {:state => 'enabled'}} disable autoupdate
         .clearfix
     %ul.nav.nav-tabs{role: "tablist"}
@@ -60,6 +58,10 @@
             = preserve do
               = raw @build.trace_html
       .tab-pane.active#reports_tab
+        .clearfix
+          .build-button-container.pull-right
+            %button.btn.btn-danger.btn-sm#fails-button{:type => "button", :data => {:state => 'disabled'}} fails only
+          .clearfix
         #build-report{style:"margin-top: 10px;"}
           = raw @build.report_html(true)
       - if @build.complete?

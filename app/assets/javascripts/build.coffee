@@ -31,6 +31,18 @@ class Build
           $(this).text "disable autoupdate"
 
       #
+      # Bind fails only button to show only failed examples
+      #
+      $("#fails-button").bind "click", ->
+        state = $(this).data("state")
+        if "enabled" is state
+          $(this).data "state", "disabled"
+          $(this).text "fails only"
+        else
+          $(this).data "state", "enabled"
+          $(this).text "all examples"
+
+      #
       # Check for new build output if user still watching build page
       # Only valid for runnig build when output changes during time
       #
@@ -63,6 +75,10 @@ class Build
     $('#build-report .results .example').addClass("bs-callout")
     $('#build-report .results .example.passed').addClass("bs-callout-success")
     $('#build-report .results .example.failed').addClass("bs-callout-danger")
+    if "enabled" is $("#fails-button").data("state")
+      $('#build-report .passed').remove()
+      $('#build-report .pending').remove()
+
 
 
 @Build = Build
