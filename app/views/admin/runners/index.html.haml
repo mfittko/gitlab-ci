@@ -5,42 +5,43 @@
     .pull-right
       %small
         = pluralize(@runners.total_count, 'runner')
+.row-fluid
+  .col-md-12
+    %p.lead
+      %span To register new runner you should the following registration token. With this token the runner will request a unique runner token and use that for future communication.
+      %code #{GitlabCi::REGISTRATION_TOKEN}
 
-%p.lead
-  %span To register new runner you should the following registration token. With this token the runner will request a unique runner token and use that for future communication.
-  %code #{GitlabCi::REGISTRATION_TOKEN}
+    .bs-callout
+      %p
+        A 'runner' is a process which runs a build.
+        You can setup as many runners as you need.
+        %br
+        Runners can be placed on separate users, servers, and even on your local machine.
+        %br
 
-.bs-callout
-  %p
-    A 'runner' is a process which runs a build.
-    You can setup as many runners as you need.
-    %br
-    Runners can be placed on separate users, servers, and even on your local machine.
-    %br
-
-  %div
-    %span Each runner can be in one of the following states:
-    %ul
-      %li
-        %span.label.label-success shared
-        \- run any builds
-      %li
-        %span.label.label-info specific
-        \- run only builds from assigned projects
+      %div
+        %span Each runner can be in one of the following states:
+        %ul
+          %li
+            %span.label.label-success shared
+            \- run any builds
+          %li
+            %span.label.label-info specific
+            \- run only builds from assigned projects
 
 
 
-%table.table
-  %thead
-    %tr
-      %th ID
-      %th Type
-      %th Runner token
-      %th Description
-      %th Projects
-      %th Builds Stats
-      %th Registered
-      %th
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th Type
+          %th Runner token
+          %th Description
+          %th Projects
+          %th Builds Stats
+          %th Registered
+          %th
 
-  = render @runners
-= paginate @runners
+      = render @runners
+    = paginate @runners

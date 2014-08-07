@@ -5,18 +5,19 @@
     .pull-right
       %small
         = pluralize(@projects.total_count, 'project')
+.row-fluid
+  .col-md-12
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th Name
+          %th Last build
+          %th Access
+          %th Builds
+          %th
 
-%table.table
-  %thead
-    %tr
-      %th ID
-      %th Name
-      %th Last build
-      %th Access
-      %th Builds
-      %th
+      = render @projects
 
-  = render @projects
-
-= paginate @projects
+    = paginate @projects
 
