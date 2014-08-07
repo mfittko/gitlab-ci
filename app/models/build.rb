@@ -148,7 +148,7 @@ class Build < ActiveRecord::Base
       html += parsed_html.css('head > script').to_html
       html += parsed_html.css('body').to_html
     else
-      html += parsed_html.css('body > .rspec-report .results').to_html
+      html += parsed_html.css('body > .rspec-report .results > .example_group').to_html
     end
     html
   end
