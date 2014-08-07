@@ -26,7 +26,7 @@ class BuildsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        render json: @build.to_json(methods: :trace_html)
+        render json: @build.to_json(methods: [:trace_html, :report_html])
       }
     end
   end
