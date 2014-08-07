@@ -1,16 +1,17 @@
-%h4.page-title
-  = @project.name
-  .pull-right
-    = link_to edit_project_path(@project), class: "btn btn-default btn-small" do
-      %i.icon-edit.icon-white
-      Edit Project
+.row-fluid
+  %h4.page-title
+    = @project.name
+    .pull-right
+      = link_to edit_project_path(@project), class: "btn btn-default btn-small" do
+        %i.icon-edit.icon-white
+        Edit Project
 
-%p
-  = link_to project_path(@project) do
-    &larr; Back to project builds
-%hr
+  %p
+    = link_to project_path(@project) do
+      &larr; Back to project builds
+  %hr
 
-.row
+.row-fluid
   .col-md-9
     .build-head.alert{class: build_status_alert_class(@build)}
       %h4
@@ -33,7 +34,7 @@
           = @build.updated_at.stamp('19:00 Aug 27')
 
 
-.row
+.row-fluid
   .col-md-9
     .clearfix
       - if @build.active?
