@@ -77,6 +77,7 @@ class Build
   styleResults: ->
     $('#build-report .results .example.failed').parents(".example_group").attr("class","example_group failed")
     $('.example_group, .example', '#build-report .results').addClass("bs-callout")
+    $('*', '#build-report .results').removeAttr("style")
     $('#build-report .results .example_group').addClass("bs-callout")
     $('.example_group.passed, .example.passed', '#build-report .results').addClass("bs-callout-success")
     $('.example_group.failed, .example.failed', '#build-report .results').addClass("bs-callout-danger")
