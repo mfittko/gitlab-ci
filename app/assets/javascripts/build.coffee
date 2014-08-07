@@ -30,8 +30,8 @@ class Build
               if build.status == "running"
                 $('#build-trace code').html build.trace_html
                 $('#build-trace code').append '<i class="icon-refresh icon-spin"/>'
-                $('#build-report > .results').html build.report_html
-                $('#build-report > .results').append '<i class="icon-refresh icon-spin"/>'
+                $('#build-report .results').html build.report_html
+                $('#build-report .results').append '<i class="icon-refresh icon-spin"/>'
                 @checkAutoscroll()
               else
                 Turbolinks.visit build_url
