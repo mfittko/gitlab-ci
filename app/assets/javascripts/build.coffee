@@ -58,14 +58,16 @@ class Build
       state = $(this).data("state")
       if "enabled" is state
         $(this).data "state", "disabled"
-        $(this).text "all examples"
+        $(this).text "fails only"
         $('#build-report .example.passed').show()
         $('#build-report .example.pending').show()
+        $('#build-report dt.passed').show()
       else
         $(this).data "state", "enabled"
-        $(this).text "fails only"
+        $(this).text "all examples"
         $('#build-report .example.passed').hide()
         $('#build-report .example.pending').hide()
+        $('#build-report dt.passed').hide()
 
   checkAutoscroll: ->
     if "enabled" is $("#autoscroll-button").data("state")
@@ -82,9 +84,11 @@ class Build
     if "enabled" is $("#fails-button").data("state")
       $('#build-report .example.passed').hide()
       $('#build-report .example.pending').hide()
+      $('#build-report dt.passed').hide()
     else
       $('#build-report .example.passed').show()
       $('#build-report .example.pending').show()
+      $('#build-report dt.passed').show()
 
 
 @Build = Build
