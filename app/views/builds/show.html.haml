@@ -35,24 +35,30 @@
 
 .row
   .col-md-9
+    .clearfix
+      - if @build.active?
+        .autoscroll-container.pull-right
+          %button.btn.btn-default.btn-sm#autoscroll-button{:type => "button", :data => {:state => 'disabled'}} enable autoscroll
+        .clearfix
     %ul.nav.nav-tabs{role: "tablist"}
       %li.active
         %a{href: "#trace_tab",  role:"tab", data: {toggle: "tab"}} Build Log
       %li
         %a{href: "#reports_tab",  role:"tab", data: {toggle: "tab"}} Build Report
+      - if @build.complete?
+        %li
+          %a{href: "#coverage_tab",  role:"tab", data: {toggle: "tab"}} Build Coverage
     .tab-content
       .tab-pane.active#trace_tab
-        .clearfix
-          - if @build.active?
-            .autoscroll-container.pull-right
-              %button.btn.btn-default.btn-sm#autoscroll-button{:type => "button", :data => {:state => 'disabled'}} enable autoscroll
-            .clearfix
         %pre.trace#build-trace
           %code.bash
             = preserve do
               = raw @build.trace_html
       .tab-pane.active#reports_tab
-        %iframe{frameborder: 0, style:"height:800px;width:100%;", src: "#{ENV['REPORTS_URL']}project-#{@project.id}/rspec/#{@build.sha}"}
+        %iframe#reports_frame{frameborder: 0, style:"height:800px;width:100%;", src: "#{ENV['REPORTS_URL']}project-#{@project.id}/rspec/#{@build.sha}"}
+      - if @build.complete?
+        .tab-pane.active#coverage_tab
+          %iframe#coverage_frame{frameborder: 0, style:"height:800px;width:100%;", src: "#{ENV['REPORTS_URL']}project-#{@project.id}/coverage/#{@build.sha}"}
 
   .col-md-3
     .build-widget
@@ -117,4 +123,3 @@
 
 :javascript
   new Build("#{build_url(@build)}", "#{@build.status}")
-

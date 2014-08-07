@@ -1,5 +1,6 @@
 class Build
   @interval: null
+  @reports_frame: document.getElementById("reports_frame").contentDocument
 
   constructor: (build_url, build_status) ->
     clearInterval(Build.interval)
@@ -36,6 +37,11 @@ class Build
       , 4000
 
   checkAutoscroll: ->
-    $("html,body").scrollTop $("#build-trace").height()  if "enabled" is $("#autoscroll-button").data("state")
+    if "enabled" is $("#autoscroll-button").data("state")
+      if $("#reports_tab").hasClass("active")
+        @reports_frame.location.reload(true)
+      else if $("#trace_tab").hasClass("active")
+        $("html,body").scrollTop $("#build-trace").height()
+
 
 @Build = Build
