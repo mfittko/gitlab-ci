@@ -32,6 +32,9 @@ class Build
                 $('#build-trace code').append '<i class="icon-refresh icon-spin"/>'
                 $('#build-report .results').html build.report_html
                 $('#build-report .results').append '<i class="icon-refresh icon-spin"/>'
+                $('#build-report .results .example_group').addClass("bs-callout")
+                $('#build-report .results .example_group passed').addClass("bs-callout-success")
+                $('#build-report .results .example_group failed').addClass("bs-callout-warning")
                 @checkAutoscroll()
               else
                 Turbolinks.visit build_url
