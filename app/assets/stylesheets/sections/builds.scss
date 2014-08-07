@@ -46,9 +46,9 @@ pre.trace {
   span.duration{
     float: right;
   }
-  .example_group{
-      margin: 10px 0;
-      padding: 10px;
+  .example_group, .example{
+    margin: 10px 0;
+    padding: 10px;
   }
   dl {
     margin-bottom: 0px;
