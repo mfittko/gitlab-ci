@@ -19,11 +19,23 @@ class Build
           $(this).text "disable autoscroll"
 
       #
+      # Bind autoupdate button to follow build output
+      #
+      $("#autoupdate-button").bind "click", ->
+        state = $(this).data("state")
+        if "enabled" is state
+          $(this).data "state", "disabled"
+          $(this).text "enable autoupdate"
+        else
+          $(this).data "state", "enabled"
+          $(this).text "disable autoupdate"
+
+      #
       # Check for new build output if user still watching build page
       # Only valid for runnig build when output changes during time
       #
       Build.interval = setInterval =>
-        if window.location.href is build_url
+        if window.location.href is build_url and "enabled" is $("#autoupdate-button").data("state")
           $.ajax
             url: build_url
             dataType: "json"
@@ -50,7 +62,7 @@ class Build
     $('#build-report .results .example_group').addClass("bs-example")
     $('#build-report .results .example').addClass("bs-callout")
     $('#build-report .results .example.passed').addClass("bs-callout-success")
-    $('#build-report .results .example.failed').addClass("bs-callout-warning")
+    $('#build-report .results .example.failed').addClass("bs-callout-danger")
 
 
 @Build = Build

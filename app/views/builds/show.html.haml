@@ -41,6 +41,9 @@
       - if @build.active?
         .autoscroll-container.pull-right
           %button.btn.btn-default.btn-sm#autoscroll-button{:type => "button", :data => {:state => 'disabled'}} enable autoscroll
+        %span &nbsp;
+        .autoupdate-container.pull-right
+          %button.btn.btn-default.btn-sm#autoupdate-button{:type => "button", :data => {:state => 'enabled'}} disable autoupdate
         .clearfix
     %ul.nav.nav-tabs{role: "tablist"}
       %li.active
