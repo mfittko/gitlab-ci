@@ -33,16 +33,26 @@
           = @build.updated_at.stamp('19:00 Aug 27')
 
 
-
-    .clearfix
-      - if @build.active?
-        .autoscroll-container.pull-right
-          %button.btn.btn-default.btn-sm#autoscroll-button{:type => "button", :data => {:state => 'disabled'}} enable autoscroll
+.row
+  .col-md-9
+    %ul.nav.nav-tabs{role: "tablist"}
+      %li.active
+        %a{href: "#trace_tab",  role:"tab", data: {toggle: "tab"}}
+      %li
+        %a{href: "#reports_tab",  role:"tab", data: {toggle: "tab"}}
+    .tab-content
+      .tab-pane.active#trace_tab
         .clearfix
-    %pre.trace#build-trace
-      %code.bash
-        = preserve do
-          = raw @build.trace_html
+          - if @build.active?
+            .autoscroll-container.pull-right
+              %button.btn.btn-default.btn-sm#autoscroll-button{:type => "button", :data => {:state => 'disabled'}} enable autoscroll
+            .clearfix
+        %pre.trace#build-trace
+          %code.bash
+            = preserve do
+              = raw @build.trace_html
+      .tab-pane.active#reports_tab
+        %iframe{frameborder: 0, src: "tmp/reports/#{@project.id}/rspec/#{@build.sha}"}
 
   .col-md-3
     .build-widget
@@ -107,3 +117,4 @@
 
 :javascript
   new Build("#{build_url(@build)}", "#{@build.status}")
+
