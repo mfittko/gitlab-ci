@@ -37,9 +37,9 @@
   .col-md-9
     %ul.nav.nav-tabs{role: "tablist"}
       %li.active
-        %a{href: "#trace_tab",  role:"tab", data: {toggle: "tab"}}
+        %a{href: "#trace_tab",  role:"tab", data: {toggle: "tab"}} Build Log
       %li
-        %a{href: "#reports_tab",  role:"tab", data: {toggle: "tab"}}
+        %a{href: "#reports_tab",  role:"tab", data: {toggle: "tab"}} Build Report
     .tab-content
       .tab-pane.active#trace_tab
         .clearfix
@@ -52,7 +52,7 @@
             = preserve do
               = raw @build.trace_html
       .tab-pane.active#reports_tab
-        %iframe{frameborder: 0, src: "tmp/reports/#{@project.id}/rspec/#{@build.sha}"}
+        %iframe{frameborder: 0, style:"height:800px;width:100%;", src: "#{ENV['REPORTS_URL']}project-#{@project.id}/rspec/#{@build.sha}"}
 
   .col-md-3
     .build-widget
