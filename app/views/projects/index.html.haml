@@ -2,11 +2,11 @@
   = content_for :title do
     %h3.project-title
       Dashboard
-
-  .projects
-    %p.fetch-status.light
-      %i.icon-refresh.icon-spin
-      Please wait while we fetch from GitLab (#{current_user.url})
+  .col-md-12
+    .projects
+      %p.fetch-status.light
+        %i.icon-refresh.icon-spin
+        Please wait while we fetch from GitLab (#{current_user.url})
   :javascript
     $.get("#{gitlab_projects_path}")
 - else
