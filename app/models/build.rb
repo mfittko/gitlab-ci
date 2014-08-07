@@ -141,9 +141,12 @@ class Build < ActiveRecord::Base
   end
 
   def report_html
+    html = ''
     html_src = HTTParty.get("#{ENV['REPORTS_URL']}project-#{project_id}/rspec/#{sha}")
-    html = Nokogiri::HTML(html_src).css('body').to_html
-    html ||= ''
+    parsed_html = Nokogiri::HTML(html_src)
+    html += parsed_html.css('body').to_html
+    html += parsed_html.css('head > script').to_html
+    html
   end
 
   def started?
