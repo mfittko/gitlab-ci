@@ -16,7 +16,9 @@ module API
         ActiveRecord::Base.transaction do
           builds = Build.all
           builds = builds.where(project_id: current_runner.projects) unless current_runner.shared?
-          build =  builds.first_pending_for_ref([:ref] || :master)
+          build_ref = params[:ref] || :master
+          Rails.logger.info "picking up runner for branch #{build_ref}"
+          build = builds.first_pending_for_ref(build_ref)
 
           not_found! and return unless build
 
