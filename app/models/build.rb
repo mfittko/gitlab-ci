@@ -47,6 +47,10 @@ class Build < ActiveRecord::Base
     pending.where(runner_id: nil).order('created_at ASC').first
   end
 
+  def self.first_pending_for_ref(ref)
+    pending.where(runner_id: nil, ref: ref).order('created_at ASC').first
+  end
+
   def self.create_from(build)
     new_build = build.dup
     new_build.status = :pending
