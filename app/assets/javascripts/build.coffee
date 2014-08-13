@@ -64,14 +64,14 @@ class Build
         $(this).data "state", "enabled"
         $(this).text "all examples"
 
-  Build.checkAutoscroll: ->
+  Build.checkAutoscroll = () ->
     if "enabled" is $("#autoscroll-button").data("state")
       if $("#reports_tab").hasClass("active")
         $("html,body").scrollTop $("#build-report").height()
       else if $("#trace_tab").hasClass("active")
         $("html,body").scrollTop $("#build-trace").height()
 
-  Build.styleResults: ->
+  Build.styleResults = () ->
     $fails = $('#build-report .results .example.failed')
     $fails.parents(".example_group").attr("class","example_group failed")
     $('.example_group, .example', '#build-report .results').addClass("bs-callout")
