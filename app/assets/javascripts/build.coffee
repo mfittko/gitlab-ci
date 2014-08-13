@@ -59,13 +59,10 @@ class Build
       if "enabled" is state
         $(this).data "state", "disabled"
         $(this).text "fails only"
-        $('#build-report .example_group.passed').show()
-        $('#build-report .example_group.pending').show()
       else
         $(this).data "state", "enabled"
         $(this).text "all examples"
-        $('#build-report .example_group.passed').hide()
-        $('#build-report .example_group.pending').hide()
+      @styleResults()
 
   checkAutoscroll: ->
     if "enabled" is $("#autoscroll-button").data("state")
@@ -75,18 +72,21 @@ class Build
         $("html,body").scrollTop $("#build-trace").height()
 
   styleResults: ->
-    $('#build-report .results .example.failed').parents(".example_group").attr("class","example_group failed")
+    $fails = $('#build-report .results .example.failed')
+    $fails.parents(".example_group").attr("class","example_group failed")
     $('.example_group, .example', '#build-report .results').addClass("bs-callout")
     $('*', '#build-report .results').removeAttr("style")
     $('#build-report .results .example_group').addClass("bs-callout")
-    $('.passed', '#build-report .results').addClass("bs-callout-success")
-    $('.failed', '#build-report .results').addClass("bs-callout-danger")
+    $('.example_group.passed, .example.passed', '#build-report .results').addClass("bs-callout-success")
+    $('.example_group.failed, .example.failed', '#build-report .results').addClass("bs-callout-danger")
     if "enabled" is $("#fails-button").data("state")
-      $('#build-report .passed').hide()
-      $('#build-report .pending').hide()
+      $('#build-report .example_group.passed').hide()
+      $('#build-report .example_group.pending').hide()
+      $fails.siblings(".example.passed").hide()
     else
-      $('#build-report .passed').show()
-      $('#build-report .pending').show()
+      $('#build-report .example_group.passed').show()
+      $('#build-report .example_group.pending').show()
+      $fails.siblings(".example.passed").show()
 
 
 @Build = Build
