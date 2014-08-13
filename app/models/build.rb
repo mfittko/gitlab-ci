@@ -147,6 +147,7 @@ class Build < ActiveRecord::Base
   def report_html(initial=false)
     html = ''
     html_src = HTTParty.get("#{ENV['REPORTS_URL']}project-#{project_id}/#{ref}/#{sha}/rspec/#{id}")
+    html_src.gsub("/home/gitlab_ci_runner/gitlab-ci-runner/tmp/", ENV['REPORTS_URL']) if ENV['REPORTS_URL']
     parsed_html = Nokogiri::HTML(html_src)
     parsed_html.xpath("//script").remove
     if initial
