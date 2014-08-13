@@ -55,7 +55,6 @@ class Build
     # Bind fails only button to show only failed examples
     #
     $("#fails-button").bind "click", ->
-      Build.styleResults()
       state = $(this).data("state")
       if "enabled" is state
         $(this).data "state", "disabled"
@@ -63,6 +62,7 @@ class Build
       else
         $(this).data "state", "enabled"
         $(this).text "all examples"
+      Build.styleResults()
 
   Build.checkAutoscroll = () ->
     if "enabled" is $("#autoscroll-button").data("state")
