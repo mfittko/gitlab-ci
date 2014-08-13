@@ -45,8 +45,8 @@ class Build
                 $('#build-trace code').append '<i class="icon-refresh icon-spin"/>'
                 $('#build-report .results').html build.report_html
                 $('#build-report .results').append '<i class="icon-refresh icon-spin"/>'
-                @styleResults()
-                @checkAutoscroll()
+                Build.styleResults()
+                Build.checkAutoscroll()
               else
                 Turbolinks.visit build_url
       , 4000
@@ -55,7 +55,7 @@ class Build
     # Bind fails only button to show only failed examples
     #
     $("#fails-button").bind "click", ->
-      @styleResults()
+      Build.styleResults()
       state = $(this).data("state")
       if "enabled" is state
         $(this).data "state", "disabled"
@@ -64,14 +64,14 @@ class Build
         $(this).data "state", "enabled"
         $(this).text "all examples"
 
-  checkAutoscroll: ->
+  Build.checkAutoscroll: ->
     if "enabled" is $("#autoscroll-button").data("state")
       if $("#reports_tab").hasClass("active")
         $("html,body").scrollTop $("#build-report").height()
       else if $("#trace_tab").hasClass("active")
         $("html,body").scrollTop $("#build-trace").height()
 
-  styleResults: ->
+  Build.styleResults: ->
     $fails = $('#build-report .results .example.failed')
     $fails.parents(".example_group").attr("class","example_group failed")
     $('.example_group, .example', '#build-report .results').addClass("bs-callout")
