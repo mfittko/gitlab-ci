@@ -79,14 +79,14 @@ class Build
     $('.example_group, .example', '#build-report .results').addClass("bs-callout")
     $('*', '#build-report .results').removeAttr("style")
     $('#build-report .results .example_group').addClass("bs-callout")
-    $('.example_group.passed, .example.passed', '#build-report .results').addClass("bs-callout-success")
-    $('.example_group.failed, .example.failed', '#build-report .results').addClass("bs-callout-danger")
+    $('.passed', '#build-report .results').addClass("bs-callout-success")
+    $('.failed', '#build-report .results').addClass("bs-callout-danger")
     if "enabled" is $("#fails-button").data("state")
-      $('#build-report .example_group.passed').hide()
-      $('#build-report .example_group.pending').hide()
+      $('#build-report .passed').hide()
+      $('#build-report .pending').hide()
     else
-      $('#build-report .example_group.passed').show()
-      $('#build-report .example_group.pending').show()
+      $('#build-report .passed').show()
+      $('#build-report .pending').show()
 
 
 @Build = Build
