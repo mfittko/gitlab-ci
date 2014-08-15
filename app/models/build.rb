@@ -144,17 +144,13 @@ class Build < ActiveRecord::Base
     html ||= ''
   end
 
-  def report_html(full=false, fails_only=true)
+  def report_html(fails_only=false)
     html_src = HTTParty.get("#{ENV['REPORTS_URL']}project-#{project_id}/#{ref}/#{sha}/rspec/#{id}")
     html_src.gsub!("file:///home/gitlab_ci_runner/gitlab-ci-runner/tmp/reports/", ENV['REPORTS_URL']) if ENV['REPORTS_URL']
     parsed_html = Nokogiri::HTML(html_src)
     parsed_html.xpath("//script").remove
-    if full
-      parsed_html.css('.example_group.passed').remove if fails_only
-      parsed_html.to_html
-    else
-      parsed_html.css('body > .rspec-report .results > .example_group').to_html
-    end
+    parsed_html.css('.example_group.passed').remove if fails_only
+    parsed_html.css('body > .rspec-report .results > .example_group').to_html
   end
 
   def started?
