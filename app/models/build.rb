@@ -155,8 +155,12 @@ class Build < ActiveRecord::Base
 
   def report_json
     if complete?
-      json_src = HTTParty.get("#{ENV['REPORTS_URL']}project-#{project_id}/#{ref}/#{sha}/rspec/#{id}/data.json")
-      MultiJson.load(json_src.body)
+      json_response = HTTParty.get("#{ENV['REPORTS_URL']}project-#{project_id}/#{ref}/#{sha}/rspec/#{id}/data.json")
+      if json_response.code.to_s == '200'
+        MultiJson.load(json_response.body)
+      else
+        {}
+      end
     else
       {}
     end
