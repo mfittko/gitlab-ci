@@ -32,7 +32,7 @@
       .clearfix
         = @build.status
         .pull-right
-          = @build.updated_at.stamp('19:00 Aug 27')
+          = @build.updated_at.localtime.stamp('19:00 Aug 27')
 
 
 .row-fluid
