@@ -46,9 +46,10 @@
     %ul.nav.nav-tabs{role: "tablist"}
       %li.active
         %a{href: "#trace_tab",  role:"tab", data: {toggle: "tab"}} Build Log
-      %li
-        %a{href: "#reports_tab",  role:"tab", data: {toggle: "tab"}} Build Report
-      - if @build.complete?
+      - unless !build.canceled?
+        %li
+          %a{href: "#reports_tab",  role:"tab", data: {toggle: "tab"}} Build Report
+      - if @build.complete? && !build.canceled?
         %li
           %a{href: "#coverage_tab",  role:"tab", data: {toggle: "tab"}} Build Coverage
     .tab-content
@@ -57,15 +58,16 @@
           %code.bash
             = preserve do
               = raw @build.trace_html
-      .tab-pane#reports_tab
-        .clearfix
-          .build-button-container.pull-right{style:"margin-top: 10px;"}
-            %button.btn.btn-default.btn-sm#fails-button{:type => "button", :data => {:state => 'disabled'}} fails only
+      - unless !build.canceled?
+        .tab-pane#reports_tab
           .clearfix
-        #build-report
-          .results
-            = raw @build.report_html
-      - if @build.complete?
+            .build-button-container.pull-right{style:"margin-top: 10px;"}
+              %button.btn.btn-default.btn-sm#fails-button{:type => "button", :data => {:state => 'disabled'}} fails only
+            .clearfix
+          #build-report
+            .results
+              = raw @build.report_html
+      - if @build.complete? && !build.canceled?
         .tab-pane.active#coverage_tab
           %iframe#coverage_frame{frameborder: 0, style:"height:800px;width:100%;", src: "#{ENV['REPORTS_URL']}project-#{@project.id}/#{@build.ref}/#{@build.sha}/coverage/#{@build.id}"}
 
