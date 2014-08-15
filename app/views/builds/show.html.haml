@@ -93,7 +93,7 @@
       - if @build.complete?
         %p
           %span.att-name Summary:
-          #{@build.report_json[:summary_line]}
+          #{@build.report_json['summary_line']}
       %p
         %span.attr-name Runner:
         - if @build.runner
