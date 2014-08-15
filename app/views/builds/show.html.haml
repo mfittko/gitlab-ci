@@ -93,7 +93,7 @@
       - if build.complete?
         %p
           %span.att-name Summary:
-          #{JSON.pretty_generate(build.report_json)}
+          #{JSON.pretty_generate(@build.report_json)}
       %p
         %span.attr-name Runner:
         - if @build.runner
