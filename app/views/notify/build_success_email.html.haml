@@ -13,4 +13,4 @@
   Author: #{@build.git_author_name}
 
 %h2 Report:
-#{@build.report_html(true)}
+#{@build.report_html(true).html_safe}
