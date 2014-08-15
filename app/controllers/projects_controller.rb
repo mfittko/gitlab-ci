@@ -35,8 +35,9 @@ class ProjectsController < ApplicationController
     end
 
     @ref = params[:ref]
+    @tracked_refs = @project.tracked_refs
 
-    @builds = @project.builds
+    @builds = @project.builds.select{|build|@tracked_refs.include?(build.ref)}
     @builds = @builds.where(ref: @ref) if @ref
     @builds = @builds.order('id DESC').page(params[:page]).per(20)
   end
