@@ -35,7 +35,7 @@
             %span.badge.badge-important
               #{builds.failed.count}
           %td
-            #{time_ago_in_words(runner_project.created_at)} ago
+            #{time_ago_in_words(runner_project.created_at.localtime)} ago
           %td
             = link_to 'Disable', [@project, runner_project], data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger btn-small right'
   .col-md-4

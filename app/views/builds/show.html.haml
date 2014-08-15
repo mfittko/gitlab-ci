@@ -85,11 +85,11 @@
           #{distance_of_time_in_words @build.duration}
       %p
         %span.attr-name Created:
-        #{time_ago_in_words(@build.created_at)} ago
+        #{time_ago_in_words(@build.created_at.localtime)} ago
       - if @build.finished_at
         %p
           %span.attr-name Finished:
-          #{time_ago_in_words(@build.finished_at)} ago
+          #{time_ago_in_words(@build.finished_at.localtime)} ago
       %p
         %span.attr-name Runner:
         - if @build.runner

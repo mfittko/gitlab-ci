@@ -19,5 +19,5 @@
       #{distance_of_time_in_words build.duration}
 
   %td.timestamp
-    - if build.finished_at
-      %span #{time_ago_in_words build.finished_at} ago
+    - if build.finished_at.localtime
+      %span #{time_ago_in_words build.finished_at.localtime} ago
