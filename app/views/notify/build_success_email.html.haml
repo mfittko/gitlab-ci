@@ -13,5 +13,4 @@
   Author: #{@build.git_author_name}
 
 %h2 Report:
-%pre
-  #{@build.report_html}
+#{@build.report_html(true)}
