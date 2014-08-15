@@ -20,7 +20,7 @@ class WebHookService
       build_id: build.id,
       build_status: build.status,
       build_started_at: build.started_at,
-      build_finished_at: build.finished_at,
+      build_finished_at: !!build.finished_at ? build.finished_at.localtime : nil,
       project_id: project.id,
       project_name: project.name,
       gitlab_url: project.gitlab_url,
