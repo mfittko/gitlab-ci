@@ -15,5 +15,6 @@
 %h2 Build Report:
 %p
   #{@build.report_json['summary_line']}
-/%p
-/Duration: #{@build.report_json['summary']['duration']}
+- if !!@build.report_json['summary']
+  %p
+    Duration: #{@build.report_json['summary']['duration']}
