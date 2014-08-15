@@ -46,7 +46,7 @@
     %ul.nav.nav-tabs{role: "tablist"}
       %li.active
         %a{href: "#trace_tab",  role:"tab", data: {toggle: "tab"}} Build Log
-      - unless !@build.canceled?
+      - unless @build.canceled?
         %li
           %a{href: "#reports_tab",  role:"tab", data: {toggle: "tab"}} Build Report
       - if @build.complete? && !@build.canceled?
@@ -58,7 +58,7 @@
           %code.bash
             = preserve do
               = raw @build.trace_html
-      - unless !@build.canceled?
+      - unless @build.canceled?
         .tab-pane#reports_tab
           .clearfix
             .build-button-container.pull-right{style:"margin-top: 10px;"}
