@@ -153,6 +153,15 @@ class Build < ActiveRecord::Base
     parsed_html.css('body > .rspec-report .results > .example_group').to_html
   end
 
+  def report_json
+    if complete?
+      json_src = HTTParty.get("#{ENV['REPORTS_URL']}project-#{project_id}/#{ref}/#{sha}/rspec/#{id}/data.json")
+      MultiJson.load(json_src)
+    else
+      {}
+    end
+  end
+
   def started?
     !pending? && !canceled? && started_at
   end

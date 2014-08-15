@@ -12,5 +12,11 @@
 %p
   Author: #{@build.git_author_name}
 
-%h2 Failed Examples:
+%h2 Build Report:
+%p
+  #{@build.report_json[:summary_line]}
+%p
+  Duration: #{@build.report_json[:summary][:duration]}
+
+%h3 Failed Examples:
   #{@build.report_html(true).html_safe}
