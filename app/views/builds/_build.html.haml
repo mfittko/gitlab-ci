@@ -21,6 +21,3 @@
   %td.timestamp
     - if build.finished_at
       %span #{time_ago_in_words build.finished_at.localtime} ago
-  - if build.complete?
-    %td.summary
-      #{build.report_json[:summary_line]}
