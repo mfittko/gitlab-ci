@@ -12,6 +12,5 @@
 %p
   Author: #{@build.git_author_name}
 
-%h2 Report:
-%pre
+%h2 Failed Examples:
   #{@build.report_html(true).html_safe}
