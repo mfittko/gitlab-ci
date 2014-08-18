@@ -150,7 +150,7 @@ class Build < ActiveRecord::Base
     parsed_html = Nokogiri::HTML(html_src)
     parsed_html.xpath("//script").remove
     if fails_only
-      parsed_html.css('body > .rspec-report .results > .example_group.failed').to_html
+      parsed_html.css('body > .rspec-report .results .example.failed').to_html
     else
       parsed_html.css('body > .rspec-report .results > .example_group').to_html
     end
