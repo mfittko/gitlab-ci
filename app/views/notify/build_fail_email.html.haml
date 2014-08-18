@@ -11,13 +11,13 @@
   Commit: #{link_to @build.short_sha, project_build_url(@build.project, @build)}
 %p
   Author: #{@build.git_author_name}
-
-%h2 Build Report:
-%p
-  #{@build.report_json['summary_line']}
-- if !!@build.report_json['summary']
+- unless @build.canceled?
+  %h2 Build Report:
   %p
-    Duration: #{@build.report_json['summary']['duration']}
+    #{@build.report_json['summary_line']}
+  - if !!@build.report_json['summary']
+    %p
+      Duration: #{@build.report_json['summary']['duration']}
 
-%h3 Failed Examples:
-#{@build.report_html(true)}
+  %h3 Failed Examples:
+  #{@build.report_html(true).html_safe}
