@@ -165,9 +165,18 @@ class Build < ActiveRecord::Base
 
   def report_json
     if complete?
-      json_response = HTTParty.get("#{ENV['REPORTS_URL']}project-#{project_id}/#{ref}/#{sha}/rspec/#{id}/data.json")
+      return @report_json if !!@report_json
+      report_url = "#{ENV['REPORTS_URL']}project-#{project_id}/#{ref}/#{sha}/rspec/#{id}/data.json"
+      Rails.logger.info "getting result json from #{report_url}"
+      json_response = HTTParty.get(complete?)
       if json_response.code.to_s == '200'
-        MultiJson.load(json_response.body)
+        begin
+          @report_json = MultiJson.load(json_response.body)
+          @report_json
+        rescue JSON::ParserError => e
+          Rails.logger.warn e.message
+          {}
+        end
       else
         {}
       end
