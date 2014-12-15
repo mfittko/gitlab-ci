@@ -167,8 +167,7 @@ class Build < ActiveRecord::Base
     if complete?
       return @report_json if !!@report_json
       report_url = "#{ENV['REPORTS_URL']}project-#{project_id}/#{ref}/#{sha}/rspec/#{id}/data.json"
-      Rails.logger.info "getting result json from #{report_url}"
-      json_response = HTTParty.get(complete?)
+      json_response = HTTParty.get(report_url)
       if json_response.code.to_s == '200'
         begin
           @report_json = MultiJson.load(json_response.body)
