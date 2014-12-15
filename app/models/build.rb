@@ -172,7 +172,7 @@ class Build < ActiveRecord::Base
         begin
           @report_json = MultiJson.load(json_response.body)
           @report_json
-        rescue Error => e
+        rescue Exception => e
           Rails.logger.warn e.message
           {}
         end

@@ -11,7 +11,7 @@
   Commit: #{link_to @build.short_sha, project_build_url(@build.project, @build)}
 %p
   Author: #{@build.git_author_name}
-- if  !!@build.report_json
+- if  !@build.report_json.blank?
   %h2 Build Report:
   %p
     #{@build.report_json['summary_line']}
