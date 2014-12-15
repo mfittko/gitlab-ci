@@ -11,7 +11,7 @@
   Commit: #{link_to @build.short_sha, project_build_url(@build.project, @build)}
 %p
   Author: #{@build.git_author_name}
-- unless @build.canceled?
+- unless @build.canceled? || !@build.report_json
   %h2 Build Report:
   %p
     #{@build.report_json['summary_line']}
