@@ -16,7 +16,7 @@
 
   %td.duration
     - if build.duration
-      #{build.duration.strftime("%H:%M:%S")}
+      #{Time.at(build.duration).utc.strftime("%H:%M:%S")}
 
   %td.timestamp
     - if build.finished_at

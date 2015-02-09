@@ -27,7 +27,7 @@
           .pull-right
             %span
               %i.icon-time
-              #{@build.duration.strftime("%H:%M:%S")}
+              #{Time.at(@build.duration).utc.strftime("%H:%M:%S")}
 
       .clearfix
         = @build.status
@@ -84,7 +84,7 @@
       - if @build.duration
         %p
           %span.attr-name Duration:
-          #{@build.duration.strftime("%H:%M:%S")}
+          #{Time.at(@build.duration).utc.strftime("%H:%M:%S")}
       %p
         %span.attr-name Created:
         #{time_ago_in_words(@build.created_at.localtime)} ago
