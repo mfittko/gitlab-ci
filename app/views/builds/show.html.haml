@@ -58,7 +58,7 @@
           %code.bash
             = preserve do
               = raw @build.trace_html
-      - unless @build.canceled?
+      - if @build.complete? || @build.running?
         .tab-pane#reports_tab
           .clearfix
             .build-button-container.pull-right{style:"margin-top: 10px;"}

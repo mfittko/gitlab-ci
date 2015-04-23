@@ -153,7 +153,7 @@ class Build < ActiveRecord::Base
     report_url = "#{ENV['REPORTS_URL']}project-#{project_id}/#{ref}/#{sha}/rspec/#{id}"
     Rails.logger.info "fetching reports from #{report_url}..."
     html_src = HTTParty.get(report_url)
-    html_src.gsub!("file:///home/gitlab_ci_runner/gitlab-ci-runner/tmp/reports/", ENV['REPORTS_URL']) if ENV['REPORTS_URL']
+    html_src.gsub!("file:///home/gitlab_ci_runner/gitlab-ci-runner/tmp/reports/", ENV['REPORTS_URL']) if ENV['REPORTS_URL'] && !!html_src
     parsed_html = Nokogiri::HTML(html_src)
     parsed_html.xpath("//script").remove
     if fails_only
