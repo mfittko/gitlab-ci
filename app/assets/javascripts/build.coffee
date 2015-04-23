@@ -46,6 +46,7 @@ class Build
                 $('#build-report .results').html build.report_html
                 $('#build-report .results').append '<i class="icon-refresh icon-spin"/>'
                 Build.styleResults()
+                Build.updateInfo()
                 Build.checkAutoscroll()
               else
                 Turbolinks.visit build_url
@@ -87,6 +88,15 @@ class Build
       $('#build-report .example_group.passed').show()
       $('#build-report .example_group.pending').show()
       $fails.siblings(".example.passed").show()
+
+  Build.updateInfo = () ->
+    if $('.build-widget p.specs_run').length == 1
+      $('.build-widget > .specs_run > .attr-value').text($('.example').length)
+      $('.build-widget > .specs_run > .attr-value').text($('.example.failed').length)
+    else
+      $('.build-widget').append('<p class="specs_run"><span class="attr-name"></span><span class="attr-value"></span></p>')
+      $('.build-widget').append('<p class="specs_failed"><span class="attr-name"></span><span class="attr-value"></span></p>')
+      Build.updateInfo()
 
 
 @Build = Build
