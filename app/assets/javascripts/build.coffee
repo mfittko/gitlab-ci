@@ -73,7 +73,6 @@ class Build
         $("html,body").scrollTop $("#build-trace").height()
 
   Build.styleResults = () ->
-    $('.example').closest('.example_group').css('margin-top', 0)
     $fails = $('#build-report .results .example.failed')
     $fails.parents(".example_group").attr("class","example_group failed")
     $('.example_group, .example', '#build-report .results').addClass("bs-callout")
@@ -89,6 +88,7 @@ class Build
       $('#build-report .example_group.passed').show()
       $('#build-report .example_group.pending').show()
       $fails.siblings(".example.passed").show()
+    $('.example').closest('.example_group').css('margin-top', 0)
 
   Build.updateInfo = (abort=false) ->
     if $('.build-widget p.specs_run').length == 1
