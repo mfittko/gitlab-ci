@@ -89,14 +89,14 @@ class Build
       $('#build-report .example_group.pending').show()
       $fails.siblings(".example.passed").show()
 
-  Build.updateInfo = () ->
+  Build.updateInfo = (abort=false) ->
     if $('.build-widget p.specs_run').length == 1
       $('.build-widget > .specs_run > .attr-value').text($('.example').length)
-      $('.build-widget > .specs_run > .attr-value').text($('.example.failed').length)
-    else
-      $('.build-widget').first.append('<p class="specs_run"><span class="attr-name"></span><span class="attr-value"></span></p>')
-      $('.build-widget').first.append('<p class="specs_failed"><span class="attr-name"></span><span class="attr-value"></span></p>')
-      Build.updateInfo()
+      $('.build-widget > .specs_failed > .attr-value').text($('.example.failed').length)
+    else if !abort
+      $('.build-widget:first').append('<p class="specs_run"><span class="attr-name">running spec #:</span><span class="attr-value"></span></p>')
+      $('.build-widget:first').append('<p class="specs_failed"><span class="attr-name">failed specs:</span><span class="attr-value"></span></p>')
+      Build.updateInfo(true)
 
 
 @Build = Build
