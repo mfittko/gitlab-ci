@@ -48,7 +48,7 @@ pre.trace {
   }
   > .example_group{
     margin: 10px 0;
-    .example_group{
+    [id^=example_group]{
       margin: 0px;
     }
   }
@@ -57,6 +57,10 @@ pre.trace {
   }
   .example_group, .example{
     padding: 10px;
+    margin: 0px;
+  }
+  .example_group, .example:first-of-type{
+    margin-top: 10px;
   }
   dl {
     margin-bottom: 0px;
