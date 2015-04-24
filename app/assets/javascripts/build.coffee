@@ -94,8 +94,8 @@ class Build
       $('.build-widget > .specs_run > .attr-value').text($('.example').length)
       $('.build-widget > .specs_failed > .attr-value').text($('.example.failed').length)
     else if !abort
-      $('.build-widget:first').append('<p class="specs_run"><span class="attr-name">spec run: </span><span class="attr-value"></span></p>')
-      $('.build-widget:first').append('<p class="specs_failed"><span class="attr-name">failed specs: </span><span class="attr-value"></span></p>')
+      $('.build-widget:first').append('<p class="specs_run"><span class="attr-name">Specs completed: </span><span class="attr-value"></span></p>')
+      $('.build-widget:first').append('<p class="specs_failed"><span class="attr-name">Failed specs: </span><span class="attr-value"></span></p>')
       Build.updateInfo(true)
 
 
