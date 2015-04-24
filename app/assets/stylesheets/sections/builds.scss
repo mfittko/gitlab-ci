@@ -46,10 +46,13 @@ pre.trace {
   span.duration{
     float: right;
   }
-  .example_group{
+  > .example_group{
     margin: 10px 0;
+    .example_group{
+      margin: 0px;
+    }
   }
-  .example_group:first-of-type{
+  > .example_group:first-of-type{
     margin: 0px;
   }
   .example_group, .example{
