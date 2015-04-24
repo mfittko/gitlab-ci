@@ -47,15 +47,12 @@ pre.trace {
     float: right;
   }
   .example_group{
-    padding-top: 10px;
-  }
-  .example_group:first-of-type{
-    padding-top: 0px;
-  }
-  .example_group, .example{
     margin: 10px 0;
   }
-  .example{
+  .example_group:first-of-type{
+    margin: 0px;
+  }
+  .example_group, .example{
     padding: 10px;
   }
   dl {
