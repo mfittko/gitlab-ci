@@ -39,6 +39,7 @@ class ProjectsController < ApplicationController
 
     if @ref
       @builds = @project.builds.where(ref: @ref)
+      @builds ||= @project.builds.where(tag: @ref)
     else
       @builds = @project.builds.where(ref: @tracked_refs)
     end
