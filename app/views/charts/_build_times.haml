@@ -1,14 +1,12 @@
 %fieldset
   %legend
     Build duration in minutes for last #{Settings.charts['builds_time_span']} builds
-  %div.row-fluid
-    %canvas#build_timesChart.padded{:style=>"height:300px;width: 100%"}
+  %div.row-fluid.chart
+    %canvas#build_timesChart.padded
 
 :javascript
   var data = {
     labels : #{@charts[:build_times].labels.to_json},
-    responsive: true,
-    maintainAspectRatio: false,
     datasets : [
       {
         fillColor : "#4A3",

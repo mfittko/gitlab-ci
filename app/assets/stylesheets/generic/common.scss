@@ -45,6 +45,15 @@
   color: #666;
 }
 
+.chart{
+  width: 100%;
+  height: 400px;
+  canvas{
+    width: 100%;
+    height: 100%;
+  }
+}
+
 .str-truncated {
   display: inline-block;
   overflow: hidden;
