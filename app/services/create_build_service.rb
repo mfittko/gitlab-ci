@@ -8,6 +8,8 @@ class CreateBuildService
       ref = ref.scan(/heads\/(.*)$/).flatten[0]
     end
 
+    tag = project.tags.find{|t| t['commit']['id'] == sha }
+
     data = {
       ref: ref,
       sha: sha,
@@ -15,6 +17,7 @@ class CreateBuildService
       push_data: {
         before: before_sha,
         after: sha,
+        tag: !!tag ? tag[:name] : nil,
         ref: ref,
         user_name: params[:user_name],
         repository: params[:repository],

@@ -26,7 +26,7 @@ module BuildsHelper
   end
 
   def build_tag_link(build)
-    gitlab_tag_link build.project, build.tag
+    gitlab_ref_link build.project, build.tag
   end
 
   def build_url(build)

@@ -5,6 +5,7 @@
 #  id          :integer          not null, primary key
 #  project_id  :integer
 #  ref         :string(255)
+#  tag         :string(255)
 #  status      :string(255)
 #  finished_at :datetime
 #  trace       :text
@@ -22,9 +23,11 @@ class Build < ActiveRecord::Base
   belongs_to :project
   belongs_to :runner
 
+  after_initialize :get_tag
+
   serialize :push_data
 
-  attr_accessible :project_id, :ref, :sha, :before_sha,
+  attr_accessible :project_id, :ref, :tag, :sha, :before_sha,
     :status, :finished_at, :trace, :started_at, :push_data, :runner_id, :project_name, :id
 
   validates :before_sha, presence: true
@@ -38,6 +41,10 @@ class Build < ActiveRecord::Base
   scope :success, ->() { where(status: "success") }
   scope :failed, ->() { where(status: "failed")  }
   scope :uniq_sha, ->() { select('DISTINCT(sha)') }
+
+  def get_tag
+    self.tag ||= project.tags.find{|t| t['commit']['id'] == sha }
+  end
 
   def self.last_month
     where('created_at > ?', Date.today - 1.month)
@@ -137,11 +144,6 @@ class Build < ActiveRecord::Base
 
   def short_sha
     sha[0..8]
-  end
-
-  def tag
-    @tag ||= project.tags.find{|t| t['commit']['id'] == sha }
-    @tag
   end
 
   def trace_html

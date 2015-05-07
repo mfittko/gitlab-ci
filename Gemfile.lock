@@ -339,6 +339,7 @@ DEPENDENCIES
   letter_opener
   minitest (= 4.3.2)
   mysql2
+  nokogiri
   nprogress-rails
   pg
   poltergeist
