@@ -140,6 +140,7 @@ class Build < ActiveRecord::Base
   end
 
   def tags
+    return @tags if !!@tags
     @tags = []
     begin
       @tags = MultiJson.load(`curl --header "PRIVATE-TOKEN: #{GitlabCi.config.gitlab.private_token}" "http://col-git01.columba.intern/api/v3/projects/#{project_id}/repository/tags"`)
@@ -147,6 +148,7 @@ class Build < ActiveRecord::Base
     rescue Exception => e
       Rails.logger.warn(e.message)
     end
+    @tags
   end
 
   def trace_html
