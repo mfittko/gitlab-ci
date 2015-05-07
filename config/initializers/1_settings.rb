@@ -52,5 +52,8 @@ Settings.gravatar['enabled']     = true if Settings.gravatar['enabled'].nil?
 Settings.gravatar['plain_url'] ||= 'http://www.gravatar.com/avatar/%{hash}?s=%{size}&d=mm'
 Settings.gravatar['ssl_url']   ||= 'https://secure.gravatar.com/avatar/%{hash}?s=%{size}&d=mm'
 
+# Charts
 Settings['charts'] ||= Settingslogic.new({})
 Settings.charts['builds_time_span'] = 100
+
+# Gitlab
