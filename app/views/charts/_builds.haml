@@ -2,19 +2,20 @@
   %legend
     Builds chart for last week
     (#{date_from_to(Date.today - 7.days, Date.today)})
-
-  %canvas#weekChart.padded{width: 800, height: 200}
+  %div.row.chart
+    %canvas#weekChart.padded
 
 %fieldset
   %legend
     Builds chart for last month
     (#{date_from_to(Date.today - 30.days, Date.today)})
-
-  %canvas#monthChart.padded{width: 800, height: 300}
+  %div.row.chart
+    %canvas#monthChart
 
 %fieldset
   %legend Builds chart for last year
-  %canvas#yearChart.padded{width: 800, height: 400}
+  %div.row.chart
+    %canvas#yearChart
 
 - [:week, :month, :year].each do |scope|
   :javascript
@@ -38,4 +39,4 @@
       ]
     }
     var ctx = $("##{scope}Chart").get(0).getContext("2d");
-    new Chart(ctx).Line(data,{"scaleOverlay": true});
+    new Chart(ctx).Line(data,{"scaleOverlay": true, "responsive": true, "maintainAspectRatio": false});
