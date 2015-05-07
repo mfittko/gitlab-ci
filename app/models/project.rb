@@ -164,6 +164,7 @@ ls -la
     rescue Exception => e
       Rails.logger.warn(e.message)
     end
+    Rails.logger.info("#{@tags.size} tags found.")
     @tags
   end
 
