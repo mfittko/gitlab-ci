@@ -2,12 +2,13 @@
   %legend
     Build duration in minutes for last #{Settings.charts['builds_time_span']} builds
   %div.row-fluid
-    %canvas#build_timesChart.padded{ style: "width: 100%" }
+    %canvas#build_timesChart.padded{:style=>"height:300px;width: 100%"}
 
 :javascript
   var data = {
     labels : #{@charts[:build_times].labels.to_json},
     responsive: true,
+    maintainAspectRatio: false,
     datasets : [
       {
         fillColor : "#4A3",
@@ -19,4 +20,4 @@
     ]
   }
   var ctx = $("#build_timesChart").get(0).getContext("2d");
-  new Chart(ctx).Line(data,{"scaleOverlay": true, "responsive": true});
+  new Chart(ctx).Line(data,{"scaleOverlay": true, "responsive": true, "maintainAspectRatio": false});
