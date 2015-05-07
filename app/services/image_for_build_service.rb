@@ -6,7 +6,7 @@ class ImageForBuildService
       image_name = image_for_build(build)
     elsif params[:ref]
       # Look for last build per branch
-      build = project.builds.where(ref: params[:ref]).last
+      build = project.builds.where(Build.arel_table[:tag].eq(params[:ref]).or(Build.arel_table[:ref].eq(params[:ref]))).last
       image_name = image_for_build(build)
     else
       image_name = 'unknown.png'

@@ -12,7 +12,7 @@
   %td.build-branch
     - unless @ref
       %span
-        = link_to build.ref, project_path(@project, ref: build.ref)
+        = link_to (build.tag || build.ref), project_path(@project, ref: build.tag || build.ref)
 
   %td.duration
     - if build.duration
