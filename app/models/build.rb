@@ -140,7 +140,8 @@ class Build < ActiveRecord::Base
   end
 
   def tags
-    project.tags.select!{|t|t['commit']['id'] == sha}
+    @tags ||= project.tags.select!{|t| t['commit']['id'] == sha }
+    @tags
   end
 
   def trace_html
