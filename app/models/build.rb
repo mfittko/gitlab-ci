@@ -144,7 +144,8 @@ class Build < ActiveRecord::Base
     @tags = []
     begin
       @tags = MultiJson.load(`curl --header "PRIVATE-TOKEN: #{GitlabCi.config.gitlab.private_token}" "http://col-git01.columba.intern/api/v3/projects/#{project_id}/repository/tags"`)
-      @tags.select!{|t|t['commit']['id']=='e6d504bdee3e43c245abb683541a0cbf5f93d821'}
+      puts @tags.first.to_s
+      @tags.select!{|t|t['commit']['id'] == sha}
     rescue Exception => e
       Rails.logger.warn(e.message)
     end
