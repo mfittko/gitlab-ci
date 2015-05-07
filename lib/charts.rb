@@ -55,7 +55,7 @@ module Charts
 
   class BuildTime < Chart
     def collect
-      builds = project.builds.where('builds.finished_at is NOT NULL AND builds.started_at is NOT NULL AND builds.status is "success"').last(Settings.charts['builds_time_span'])
+      builds = project.builds.where('builds.finished_at is NOT NULL AND builds.started_at is NOT NULL AND builds.status = "success"').last(Settings.charts['builds_time_span'])
       builds.each do |build|
         @labels << build.short_sha
         @build_times << (build.duration / 60)
