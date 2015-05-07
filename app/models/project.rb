@@ -158,12 +158,12 @@ ls -la
 
   def tags
     begin
-      $tags ||= MultiJson.load(%x(curl --header "PRIVATE-TOKEN: #{GitlabCi.config.gitlab.private_token}" "http://col-git01.columba.intern/api/v3/projects/#{gitlab_id}/repository/tags"))
+      @tags ||= MultiJson.load(%x(curl --header "PRIVATE-TOKEN: #{GitlabCi.config.gitlab.private_token}" "http://col-git01.columba.intern/api/v3/projects/#{gitlab_id}/repository/tags"))
     rescue Exception => e
       Rails.logger.warn(e.message)
     end
-    Rails.logger.info("#{$tags.size} tags found.")
-    $tags
+    Rails.logger.info("#{@tags.size} tags found.")
+    @tags
   end
 
   def web_hooks?
