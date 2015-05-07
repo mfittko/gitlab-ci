@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
     @tracked_refs = @project.tracked_refs
 
     if @ref
-      @builds = @project.builds.where(Build.arel_table[:tag].eq(@ref).or(builds.arel_table[:ref].eq(@ref)))
+      @builds = @project.builds.where(Build.arel_table[:tag].eq(@ref).or(Build.arel_table[:ref].eq(@ref)))
     else
       @builds = @project.builds.where(ref: @tracked_refs)
     end
