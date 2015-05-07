@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
     @tracked_refs = @project.tracked_refs
 
     if @ref
-      @builds = @project.builds.or(tag: @ref).or(ref: @ref)
+      @builds = @project.builds.where(tag: @ref).or(ref: @ref)
     else
       @builds = @project.builds.where(ref: @tracked_refs)
     end
