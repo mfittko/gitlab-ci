@@ -23,7 +23,7 @@ class Build < ActiveRecord::Base
   belongs_to :project
   belongs_to :runner
 
-  after_initialize :get_tag
+  after_initialize :fetch_tag
 
   serialize :push_data
 
@@ -42,8 +42,9 @@ class Build < ActiveRecord::Base
   scope :failed, ->() { where(status: "failed")  }
   scope :uniq_sha, ->() { select('DISTINCT(sha)') }
 
-  def get_tag
+  def fetch_tag
     self.tag ||= project.tags.find{|t| t['commit']['id'] == sha }
+    self.save!
   end
 
   def self.last_month
