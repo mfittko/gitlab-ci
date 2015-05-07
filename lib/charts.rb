@@ -56,7 +56,7 @@ module Charts
   class BuildTime < Chart
     def collect
       builds = project.builds.where('builds.finished_at is NOT NULL AND builds.started_at is NOT NULL AND builds.status = "success" AND TIMESTAMPDIFF(MINUTE, `builds`.`started_at`, `builds`.`finished_at`) > 30').group(:sha).last(Settings.charts['builds_time_span'])
-      builds.select!{|build| build.tags.size > 0 }
+      builds.select!{|build| !!build.tags && build.tags.size > 0 }
       builds.each do |build|
         @labels << build.short_sha
         @build_times << (build.duration / 60)
