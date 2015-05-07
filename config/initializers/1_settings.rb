@@ -53,4 +53,4 @@ Settings.gravatar['plain_url'] ||= 'http://www.gravatar.com/avatar/%{hash}?s=%{s
 Settings.gravatar['ssl_url']   ||= 'https://secure.gravatar.com/avatar/%{hash}?s=%{size}&d=mm'
 
 Settings['charts'] ||= Settingslogic.new({})
-Settings.charts['builds_time_span'] = 200
+Settings.charts['builds_time_span'] = 100
