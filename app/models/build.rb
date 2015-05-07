@@ -43,7 +43,7 @@ class Build < ActiveRecord::Base
   scope :uniq_sha, ->() { select('DISTINCT(sha)') }
 
   def fetch_tag
-    self.tag ||= project.tags.find{|t| t['commit']['id'] == sha }
+    self.tag ||= project.tags.find{|t| t['commit']['id'] == sha }[:name]
     self.save!
   end
 
