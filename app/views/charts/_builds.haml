@@ -10,12 +10,12 @@
     Builds chart for last month
     (#{date_from_to(Date.today - 30.days, Date.today)})
   %div.row.chart
-    %canvas#monthChart
+    %canvas#monthChart.padded
 
 %fieldset
   %legend Builds chart for last year
   %div.row.chart
-    %canvas#yearChart
+    %canvas#yearChart.padded
 
 - [:week, :month, :year].each do |scope|
   :javascript

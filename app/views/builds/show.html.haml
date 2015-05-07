@@ -120,6 +120,10 @@
       %p
         %span.attr-name Message:
         #{@build.git_commit_message}
+      - if !!@build.tag
+        %p
+          %span.attr-name Code Version:
+          #{@build.tag['name']}
 
     - if @builds.present?
       .build-widget
