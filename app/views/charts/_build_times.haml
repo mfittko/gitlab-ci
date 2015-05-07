@@ -2,7 +2,7 @@
   %legend
     Build duration in minutes for last #{Settings.charts['builds_time_span']} builds
   %div.row-fluid
-    %canvas#build_timesChart.padded{width: '100%', height: 300}
+    %canvas#build_timesChart.padded{ style: "width: 100%" }
 
 :javascript
   var data = {
