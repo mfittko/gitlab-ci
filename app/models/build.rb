@@ -139,11 +139,6 @@ class Build < ActiveRecord::Base
     sha[0..8]
   end
 
-  def tags
-    @tags ||= project.tags.select!{|t| t['commit']['id'] == sha }
-    @tags
-  end
-
   def trace_html
     html = Ansi2html::convert(trace) if trace.present?
     html ||= ''

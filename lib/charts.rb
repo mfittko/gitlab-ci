@@ -56,8 +56,9 @@ module Charts
   class BuildTime < Chart
     def collect
       builds = project.builds.where('builds.finished_at is NOT NULL AND builds.started_at is NOT NULL AND builds.status = "success" AND TIMESTAMPDIFF(MINUTE, `builds`.`started_at`, `builds`.`finished_at`) > 30').group(:sha).last(Settings.charts['builds_time_span'])
+      project_tags = project.tags
       builds.select! do |build|
-        build_tags = build.tags
+        build_tags = project_tags.select!{|t| t['commit']['id'] == build.sha }
         !!build_tags && build_tags.is_a?(Array) && build_tags.size > 0
       end
       builds.each do |build|
