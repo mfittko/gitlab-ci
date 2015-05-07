@@ -62,7 +62,8 @@ module Charts
         !!build_tags && build_tags.is_a?(Array) && build_tags.size > 0
       end
       builds.each do |build|
-        @labels << build.short_sha
+        build_tags = project_tags.select{|t| t['commit']['id'] == build.sha }
+        @labels << "#{build.finished_at.strftime('%d.%m.%Y')} - #{build_tags.first}"
         @build_times << (build.duration / 60)
       end
     end
