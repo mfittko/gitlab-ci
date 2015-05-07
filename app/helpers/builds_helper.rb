@@ -25,6 +25,10 @@ module BuildsHelper
     link_to(build.short_sha, project_build_path(build.project, build))
   end
 
+  def build_tag_link(build)
+    gitlab_tag_link build.project, build.tag
+  end
+
   def build_url(build)
     project_build_url(build.project, build)
   end

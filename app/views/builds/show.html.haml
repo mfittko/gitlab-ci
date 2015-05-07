@@ -123,7 +123,7 @@
       - if !!@build.tag
         %p
           %span.attr-name Code Version:
-          #{@build.tag['name']}
+          #{build_tag_link @build}
 
     - if @builds.present?
       .build-widget

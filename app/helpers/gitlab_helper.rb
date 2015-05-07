@@ -17,4 +17,10 @@ module GitlabHelper
     gitlab_url << "/commit/#{sha}"
     link_to sha, gitlab_url
   end
+
+  def gitlab_tag_link project, tag
+    gitlab_url = project.gitlab_url.dup
+    gitlab_url << "/commit/#{tag['name']}"
+    link_to sha, gitlab_url
+  end
 end
