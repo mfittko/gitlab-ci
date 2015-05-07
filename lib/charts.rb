@@ -63,7 +63,7 @@ module Charts
       end
       builds.each do |build|
         build_tags = project_tags.select{|t| t['commit']['id'] == build.sha }
-        @labels << "#{build.finished_at.strftime('%d.%m.%Y')} - #{build_tags.first}"
+        @labels << "#{build.finished_at.strftime('%d.%m.%Y')} - #{build_tags.first['name']}"
         @build_times << (build.duration / 60)
       end
     end
