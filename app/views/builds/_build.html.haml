@@ -10,9 +10,8 @@
     %span= truncate(build.git_commit_message, length: 50)
 
   %td.build-branch
-    - unless @ref
-      %span
-        = link_to (build.tag.blank? ? build.ref : build.tag), project_path(@project, ref: (build.tag.blank? ? build.ref : build.tag))
+    %span
+      = link_to (build.tag.blank? ? build.ref : build.tag), project_path(@project, ref: (build.tag.blank? ? build.ref : build.tag))
 
   %td.duration
     - if build.duration
