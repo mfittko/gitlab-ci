@@ -55,10 +55,7 @@ module Charts
 
   class BuildTime < Chart
     def collect
-      builds = project.builds.where('builds.finished_at is NOT NULL AND builds.started_at is NOT NULL AND builds.status = "success" AND TIMESTAMPDIFF(MINUTE, `builds`.`started_at`, `builds`.`finished_at`) > 30').group(:sha).last(Settings.charts['builds_time_span'])
-      builds.select! do |build|
-        !build.tag.blank?
-      end
+      builds = project.builds.where('builds.finished_at is NOT NULL AND builds.started_at is NOT NULL AND builds.status = "success" AND builds.tag is NOT NULL AND TIMESTAMPDIFF(MINUTE, `builds`.`started_at`, `builds`.`finished_at`) > 30').last(Settings.charts['builds_time_span'])
       builds.each do |build|
         @labels << "#{build.finished_at.strftime('%d.%m.%Y')} - #{build.tag}"
         @build_times << (build.duration / 60).round
