@@ -12,6 +12,7 @@
 #
 #= require jquery
 #= require bootstrap
+#= require bootstrap/affix
 #= require jquery_ujs
 #= require turbolinks
 #= require jquery.turbolinks
