@@ -42,7 +42,7 @@ $(document).on 'click', '.assign-all-runner', ->
 
 $(window).on 'load', (event) ->
   buildWidget = $("body > .container-body .build-widget")
-  if buildWidget.length == 1
+  if buildWidget.length > 0
     rightBar = buildWidget.parent()
     affix
       offset:
