@@ -40,7 +40,7 @@ $(document).on 'click', '.edit-runner-link', (event) ->
 $(document).on 'click', '.assign-all-runner', ->
   $(this).replaceWith('<i class="icon-refresh icon-spin"></i> Assign in progress..')
 
-$(window).on 'load', (event) ->
+jQuery ->
   buildWidget = $("body > .container-body .build-widget")
   if buildWidget.length > 0
     rightBar = buildWidget.parent()
