@@ -41,11 +41,11 @@ $(document).on 'click', '.edit-runner-link', (event) ->
 $(document).on 'click', '.assign-all-runner', ->
   $(this).replaceWith('<i class="icon-refresh icon-spin"></i> Assign in progress..')
 
-jQuery ->
+jQuery ($) ->
   buildWidget = $("body > .container-body .build-widget")
   if buildWidget.length > 0
     rightBar = buildWidget.parent()
-    affix
+    rightBar.affix
       offset:
         top: () => (this.top = rightBar.position().top)
 
