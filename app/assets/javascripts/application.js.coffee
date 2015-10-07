@@ -40,6 +40,14 @@ $(document).on 'click', '.edit-runner-link', (event) ->
 $(document).on 'click', '.assign-all-runner', ->
   $(this).replaceWith('<i class="icon-refresh icon-spin"></i> Assign in progress..')
 
+$(window).on 'load', (event) ->
+  buildWidget = $("body > .container-body .build-widget")
+  if buildWidget.length == 1
+    rightBar = buildWidget.parent()
+    affix
+      offset:
+        top: () => (this.top = rightBar.position().top)
+
 window.unbindEvents = ->
   $(document).unbind('scroll')
   $(document).off('scroll')
