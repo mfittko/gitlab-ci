@@ -46,9 +46,8 @@
     %ul.nav.nav-tabs{role: "tablist"}
       %li.active
         %a{href: "#trace_tab",  role:"tab", data: {toggle: "tab"}} Build Log
-      - unless @build.canceled?
-        %li
-          %a{href: "#reports_tab",  role:"tab", data: {toggle: "tab"}} Build Report
+      %li
+        %a{href: "#reports_tab",  role:"tab", data: {toggle: "tab"}} Build Report
       - if @build.complete? && !@build.canceled?
         %li
           %a{href: "#coverage_tab",  role:"tab", data: {toggle: "tab"}} Build Coverage
