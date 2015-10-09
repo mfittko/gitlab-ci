@@ -37,12 +37,6 @@
 
 .row-fluid
   .col-md-9
-    .clearfix
-      - if @build.active?
-        .build-button-container.pull-right
-          %button.btn.btn-default.btn-sm#autoscroll-button{:type => "button", :data => {:state => 'disabled'}} enable autoscroll
-          %button.btn.btn-default.btn-sm#autoupdate-button{:type => "button", :data => {:state => 'enabled'}} disable autoupdate
-        .clearfix
     %ul.nav.nav-tabs{role: "tablist"}
       %li.active
         %a{href: "#trace_tab",  role:"tab", data: {toggle: "tab"}} Build Log
@@ -123,6 +117,11 @@
         %p
           %span.attr-name Code Version:
           #{build_tag_link @build}
+
+    .build-widget
+      .build-button-container.pull-right
+        %button.btn.btn-default.btn-sm#autoscroll-button{:type => "button", :data => {:state => 'disabled'}} enable autoscroll
+        %button.btn.btn-default.btn-sm#autoupdate-button{:type => "button", :data => {:state => 'enabled'}} disable autoupdate
 
     - if @builds.present?
       .build-widget
