@@ -18,18 +18,20 @@ pre.trace {
   }
 }
 
-.build-button-container {
-  margin-bottom: 5px;
-  button {
-    margin-left: 5px;
-  }
-}
-
 .build-widget {
   padding: 10px;
   background: #f4f4f4;
   margin-bottom: 20px;
   border-radius: 4px;
+
+  &.build-button-container {
+    width: 100%;
+    float: left;
+    button {
+      float: right;
+      margin-left: 5px;
+    }
+  }
 
   .title {
     margin-top: 0;
