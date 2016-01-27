@@ -22,7 +22,7 @@ class BuildsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        @builds = project.builds.where(sha: @build.sha).not(status: 'canceled').order('id DESC')
+        @builds = project.builds.where(sha: @build.sha, 'name != ?' => 'canceled').order('id DESC')
         @builds = @builds.where("id not in (?)", @build.id).page(params[:page]).per(20)
       end
       format.json {
