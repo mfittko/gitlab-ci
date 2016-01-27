@@ -20,11 +20,11 @@ class BuildsController < ApplicationController
 
     raise ActiveRecord::RecordNotFound unless @build
 
-    @builds = project.builds.where(sha: @build.sha).order('id DESC')
-    @builds = @builds.where("id not in (?)", @build.id).page(params[:page]).per(20)
-
     respond_to do |format|
-      format.html
+      format.html do
+        @builds = project.builds.where(sha: @build.sha).not(status: 'canceled').order('id DESC')
+        @builds = @builds.where("id not in (?)", @build.id).page(params[:page]).per(20)
+      end
       format.json {
         render json: @build.to_json(methods: [:trace_html, :report_html])
       }
