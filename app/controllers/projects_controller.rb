@@ -38,9 +38,9 @@ class ProjectsController < ApplicationController
     @tracked_refs = @project.tracked_refs
 
     if @ref
-      @builds = @project.builds.where(Build.arel_table[:tag].eq(@ref).or(Build.arel_table[:ref].eq(@ref)).and(Build.arel_table[:status].neq('canceled')))
+      @builds = @project.builds.where(Build.arel_table[:tag].eq(@ref).or(Build.arel_table[:ref].eq(@ref)))
     else
-      @builds = @project.builds.where(ref: @tracked_refs)
+      @builds = @project.builds.where(ref: @tracked_refs).not(status: 'canceled')
     end
     @builds = @builds.order('id DESC').page(params[:page]).per(20)
   end
