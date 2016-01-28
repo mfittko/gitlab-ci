@@ -21,7 +21,6 @@ class BuildsController < ApplicationController
     raise ActiveRecord::RecordNotFound unless @build
 
     @builds = project.builds.where(sha: @build.sha).order('id DESC')
-    @builds = @builds.where("status not in canceled", @build.status)
     @builds = @builds.where("id not in (?)", @build.id).page(params[:page]).per(20)
 
     respond_to do |format|
