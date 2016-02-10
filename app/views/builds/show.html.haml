@@ -122,7 +122,7 @@
       %button.btn.btn-default.btn-sm#autoscroll-button{:type => "button", :data => {:state => 'disabled'}} enable autoscroll
       %button.btn.btn-default.btn-sm#autoupdate-button{:type => "button", :data => {:state => 'enabled'}} disable autoupdate
 
-    - if @builds.present?
+    - unless @builds.blank?
       .build-widget
         %h4.title #{pluralize(@builds.count, "other build")} for #{@build.short_sha}:
         %table.builds

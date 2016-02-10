@@ -42,7 +42,7 @@ class ProjectsController < ApplicationController
     else
       @builds = @project.builds.where(ref: @tracked_refs)
     end
-    @builds = @builds.order('id DESC').page(params[:page]).per(20)
+    @builds = @builds.where('status != ?', 'canceled').order('id DESC').page(params[:page]).per(20)
   end
 
   def integration
