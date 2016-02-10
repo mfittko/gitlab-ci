@@ -18,10 +18,10 @@
       #{Time.at(build.duration).utc.strftime("%H:%M:%S")}
 
   %td.created_at
-    %span #{build.created_at.localtime.strftime("%d. %m. %Y - %H:%M:%S")}
+    %span #{build.created_at.localtime.strftime("%d.%m.%Y %H:%M:%S")}
 
   %td.timestamp
     - if build.finished_at
-      %span #{build.finished_at.strftime("%d. %m. %Y - %H:%M:%S")}
+      %span #{build.finished_at.strftime("%d.%m.%Y %H:%M:%S")}
     - else
       %span.text-center -
