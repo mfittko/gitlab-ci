@@ -22,9 +22,9 @@
 
   %td.timestamp
     - if build.finished_at
-      %span #{build.finished_at.strftime("%d.%m.%Y %H:%M:%S")}
+      %span #{build.finished_at.localtime.strftime("%d.%m.%Y %H:%M:%S")}
     - else
-      %span.text-center -
+      %span.text-center style="width:100%" -
 
 :javascript
   window.setTimeout(function(){
