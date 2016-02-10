@@ -24,7 +24,7 @@
     - if build.finished_at
       %span #{build.finished_at.localtime.strftime("%d.%m.%Y %H:%M:%S")}
     - else
-      %span.text-center style="width:100%" -
+      %span.text-center{style: "width:100%"} -
 
 :javascript
   window.setTimeout(function(){
