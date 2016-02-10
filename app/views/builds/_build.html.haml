@@ -25,3 +25,8 @@
       %span #{build.finished_at.strftime("%d.%m.%Y %H:%M:%S")}
     - else
       %span.text-center -
+
+:javascript
+  window.setTimeout(function(){
+    window.location.reload();
+  }, 10000)
