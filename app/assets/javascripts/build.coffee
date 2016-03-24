@@ -44,11 +44,9 @@ class Build
               if build.status == "running"
                 previous_build_trace_html = if @prev? then @prev.trace_html else ''
                 build_trace_diff = build.trace_html.substr(previous_build_trace_html.length)
-                previous_results_html = if @prev? then @prev.report_html else ''
-                build_result_diff = build.report_html.substr(previous_results_html.length)
                 $('#build-trace code').append(build_trace_diff)
                 $('#build-trace').append '<i class="icon-refresh icon-spin"/>' unless $('#build-trace').find('i.icon-spin').length > 0
-                $('#build-report .results').append(build_result_diff)
+                $('#build-report .results').html(build.report_html)
                 $('#build-report').append '<i class="icon-refresh icon-spin"/>' unless $('#build-report').find('i.icon-spin').length > 0
                 Build.styleResults()
                 Build.updateInfo()
