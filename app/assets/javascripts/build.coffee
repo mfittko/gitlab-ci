@@ -1,5 +1,6 @@
 class Build
   @interval: null
+  @prev: null
 
   constructor: (build_url, build_status) ->
     Build.styleResults()
@@ -41,17 +42,18 @@ class Build
             dataType: "json"
             success: (build) =>
               if build.status == "running"
-                previous_build_trace_html = $('#build-trace code').html() || ''
+                previous_build_trace_html = if @prev? then @prev.trace_html else ''
                 build_trace_diff = build.trace_html.substr(previous_build_trace_html.length)
-                previous_results_html = $('#build-report .results').html() || ''
+                previous_results_html = if @prev? then @prev.report_html else ''
                 build_result_diff = build.report_html.substr(previous_results_html.length)
                 $('#build-trace code').append(build_trace_diff)
-                $('#build-trace').append '<i class="icon-refresh icon-spin"/>' unless $('#build-trace').find('i.icon-spin')
+                $('#build-trace').append '<i class="icon-refresh icon-spin"/>' unless $('#build-trace').find('i.icon-spin').length > 0
                 $('#build-report .results').append(build_result_diff)
-                $('#build-report').append '<i class="icon-refresh icon-spin"/>' unless $('#build-report').find('i.icon-spin')
+                $('#build-report').append '<i class="icon-refresh icon-spin"/>' unless $('#build-report').find('i.icon-spin').length > 0
                 Build.styleResults()
                 Build.updateInfo()
                 Build.checkAutoscroll()
+                @prev = build
               else
                 Turbolinks.visit build_url
       , 10000
