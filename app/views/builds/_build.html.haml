@@ -26,7 +26,8 @@
     - else
       %span.text-center{style: "width:100%"} -
 
-:javascript
-  window.setTimeout(function(){
-    window.location.reload();
-  }, 60000)
+- unless build.finished_at
+  :javascript
+    window.setTimeout(function(){
+      window.location.reload();
+    }, 60000)

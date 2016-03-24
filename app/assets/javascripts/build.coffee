@@ -35,7 +35,7 @@ class Build
       # Only valid for runnig build when output changes during time
       #
       Build.interval = setInterval =>
-        if window.location.href is build_url and "enabled" is $("#autoupdate-button").data("state")
+        if window.location.href is build_url and "enabled" is $("#autoupdate-button").data("state") and $.active == 0
           $.ajax
             url: build_url
             dataType: "json"
@@ -50,7 +50,7 @@ class Build
                 Build.checkAutoscroll()
               else
                 Turbolinks.visit build_url
-      , 4000
+      , 10000
 
     #
     # Bind fails only button to show only failed examples
